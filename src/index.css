@@ -1,0 +1,50 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #262626;
+  color: #fff;
+  font-family: 'Roboto', sans-serif;
+}
+
+body::-webkit-scrollbar { width: 8px; }
+body::-webkit-scrollbar-thumb {
+  background-color: #f2f5f9;
+  border-radius: 8px;
+}
+
+.appContainer {
+  margin: auto;
+  padding: 0 20px;
+  max-width: 500px;
+}
+.titleApp {
+  font-family: 'Montserrat', sans-serif;
+  text-align: center;
+  font-weight: 500;
+  margin: 20px 0;
+}
+.appContainer > .addTaskBtn {
+  outline: none;
+  background-color: rgb(53, 208, 156);
+  color: #444;
+  border: none;
+  border-radius: 4px;
+  font-size: 1.1rem;
+  margin-bottom: 20px;
+  height: 50px;
+  width: 100%;
+}
+
+.appContainer > .taskListContainer { padding-bottom: 10px; }
+.taskListContainer > .noTask {
+  text-align: center;
+  font-size: 1.4rem;
+  font-weight: 400;
+}
