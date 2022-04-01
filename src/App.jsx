@@ -1,60 +1,74 @@
-import { useState, useEffect } from 'react';
-import TaskItem from './components/taskItem';
+import { useState } from 'react';
+// components
+import TaskItem from './components/taskCardItem';
+import ModalTask from './components/modal';
 
 export default function App() {
-  const [taskList, setTaskList] = useState(() => {
-    const taskListLocal = localStorage.getItem('@task_list');
-    if(taskListLocal) {
-      return JSON.parse(taskListLocal);
-    };
+  const [modalShow, setModalShow] = useState(false);
+  const [taskList, setTaskList] = useState([])
 
-    return [];
-  });
+  // Modal Action
+  const handlerModalShow = () => setModalShow(true);
+  const handlerModalHidden = () => setModalShow(false);
+  // Action TaskList
+  const handlerAddTaskList = (titleTask, descriptionTask) => {
+    const generetedId = `${Math.floor(Math.random() * 10)}-${titleTask.slice(0, 5)}`;
+    taskList.push({ id: generetedId, titleTask, descriptionTask });
 
-  const handlerAddTask = () => {
-    let inputTaskPrompt = prompt('Write a Task');
-    if(inputTaskPrompt !== '') {
-      let createID = `${Math.floor(Math.random() * 10)}-${inputTaskPrompt.slice(0, 5)}`;
-      taskList.push({ id: createID, taskTitle: inputTaskPrompt });
-  
-      setTaskList([...taskList]);
-    }
+    setTaskList([...taskList]);
   };
-  const handlerUpdateTask = (taskData) => {
-    let inputUpdateTask = prompt('Update Task', taskData.taskTitle);
-    if(inputUpdateTask !== '') {
-      let findIndex = taskList.findIndex((item) => item.id === taskData.id);
-      taskList[findIndex].taskTitle = inputUpdateTask;
-
-      setTaskList([...taskList]);
-    };
+  const handlerUpdateTaskList = (IdTask, titleTask, descriptionTask) => {
+    const findIndex = taskList.findIndex((item) => item.id === IdTask);
+    taskList[findIndex].titleTask = titleTask;
+    taskList[findIndex].descriptionTask = descriptionTask;
+    
+    setTaskList([...taskList]);
   };
-  const handlerDeleteTask = (taskID) => {
-    let removeTaskById = taskList.filter((item) => item.id !== taskID);
+  const handlerCheckTask = (idTask) => {
+    const findIndex = taskList.findIndex((item) => item.id === idTask);
+    taskList[findIndex].completedTask = !taskList[findIndex].completedTask;
 
-    setTaskList(removeTaskById);
-  };
+    setTaskList([...taskList]);
+  }
+  const handlerDeltedTask = (idTask) => {
+    console.log(idTask)
+    const removeById = taskList.filter((item) => item.id !== idTask);
 
-  useEffect(() => {
-    taskList.length > 0
-      ? localStorage.setItem('@task_list', JSON.stringify(taskList))
-      : localStorage.removeItem('@task_list');
-  }, [taskList]);
+    setTaskList(removeById);
+  }
 
   return (
-    <div className='appContainer'>
-      <h2 className='titleApp'> To-Do List </h2>
-      <input
-        type='button'
-        className='addTaskBtn'
-        value='Add Task'
-        onClick={handlerAddTask}
-      />
-      <ul className='taskListContainer'>
+    <div className='appWrapper'>
+      {
+        modalShow &&
+        <ModalTask
+          modalShow={modalShow}
+          modalData={{
+            id: 0,
+            titleTask: '',
+            descriptionTask: '',
+          }}
+          handlerModalHidden={handlerModalHidden}
+          handlerAddTaskList={handlerAddTaskList}
+        />
+      }
+      <h1 className='titleToDos'> To-Do List </h1>
+      <button type='button' className='registerNewTaskBtn' onClick={handlerModalShow}>
+        Register new task
+      </button>
+      <ul className='taskList'>
         {
           taskList.length > 0
-            ? taskList.map((item) => <TaskItem key={item.id} taskData={item} handlerUpdateTask={handlerUpdateTask} handlerDeleteTask={handlerDeleteTask} />)
-            : <h3 className='noTask'> No tasks registered </h3>
+            ? taskList.map((item) => 
+              <TaskItem 
+                key={item.id} 
+                taskData={item} 
+                handlerUpdateTaskList={handlerUpdateTaskList} 
+                handlerCheckTask={handlerCheckTask}
+                handlerDeltedTask={handlerDeltedTask}
+              />
+            )
+            : <h2 className='noTask'> No tasks registered </h2>
         }
       </ul>
     </div>

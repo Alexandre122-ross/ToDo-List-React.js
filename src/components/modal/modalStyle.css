@@ -1,0 +1,129 @@
+.modalWrapper {
+  background-color: rgba(0, 0, 0, .5);
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
+.modalWrapper > .modalContainer {
+  background-color: #fff;
+  color: #444;
+  box-shadow: 1px 1px 4px #444;
+  overflow: hidden;
+  border-radius: 8px;
+  height: 70%;
+  width: 80%;
+  max-height: 510px;
+  max-width: 500px;
+}
+.modalContainer > div { padding: 0 12px; }
+
+.modalContainer .headerModal {
+  background-color: #000138;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  height: 60px;
+}
+.headerModal h2 { font-weight: 500; }
+
+.modalContainer .sectionModal { 
+  display: flex;
+  flex-direction: column;
+  padding: 12px;
+  height: calc(100% - 60px);
+}
+.sectionModal > .quickActionContainer {
+  border-bottom: 1px solid #444;
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  padding: 0 8px;
+  height: 50px;
+}
+.quickActionContainer > .iconQuickAction { 
+  cursor: pointer;
+  font-size: 1.3rem; 
+}
+.quickActionContainer > .iconQuickAction:first-child { margin-right: auto; }
+.quickActionContainer > .iconQuickAction:last-of-type {
+  cursor: not-allowed;
+  color: rgba(0, 0, 0, .38); 
+}
+.quickActionContainer > .iconQuickActive:last-of-type {
+  color: rgb(194, 25, 25); 
+  cursor: pointer;
+}
+.sectionModal > .inputDataContainer {
+  background-color: transparent;
+  border-bottom: 1px solid #444;
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  height: 60px;
+}
+.inputDataContainer > span {
+  color: rgba(65, 65, 65, .8);
+  font-size: .87rem;
+  position: absolute;
+  top: 21px;
+  left: 8px;
+  transition: top .4s;
+}
+.inputDataContainer > .inputData {
+  outline: none;
+  background-color: transparent;
+  border: none;
+  padding: 0 8px;
+  height: 100%;
+  width: 100%;
+}
+.inputDataContainer > .borderInputActive {
+  background-color: #00b4d8;
+  position: absolute;
+  bottom: -1px;
+  height: 1px;
+  width: 0;
+  transition: width .4s;
+}
+
+.sectionModal > .descriptionContainer {
+  background-color: red;
+  height: 30%;
+}
+.descriptionContainer > .descriptionTask {
+  resize: none;
+  outline: none;
+  border: none;
+  line-height: 150%;
+  font-family: 'Roboto', sans-serif;
+  padding: 0 8px;
+  padding-top: 21px;
+  height: 100%;
+  width: 100%;
+}
+
+.sectionModal > .actionModal {
+  cursor: pointer;
+  background-color: #00b4d8;
+  color: #fff;
+  box-shadow: 0 1px 4px #000;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  margin-top: auto;
+  height: 50px;
+}
+.sectionModal > .actionModal:hover { background-color: #01a0c0; }
+.sectionModal > .actionModal:disabled { 
+  cursor: not-allowed;
+  background-color: rgba(0, 0, 0, .12); 
+  color: rgba(0, 0, 0, .38);
+}

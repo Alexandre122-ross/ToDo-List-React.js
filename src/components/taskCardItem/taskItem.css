@@ -1,0 +1,30 @@
+.taskList .taskCardItem {
+  overflow: hidden;
+  background-color: #f2f5f9;
+  color: #444;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  min-height: 90px;
+}
+.taskCardItem > .taskCardFlag {
+  cursor: pointer;
+  background-color: #26DBFF;
+  border-radius: 0 8px 8px 0;
+  height: 90px;
+  width: 0;
+  transition: width .5s;
+}
+.taskCardItem > .dataTask {
+  overflow: hidden;
+  line-height: 150%;
+  padding: 12px;
+  width: 100%;
+}
+.dataTask .titleTask {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.taskCardItem:hover > .taskCardFlag { width: 16px; }

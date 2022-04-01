@@ -19,32 +19,31 @@ body::-webkit-scrollbar-thumb {
   border-radius: 8px;
 }
 
-.appContainer {
+.appWrapper {
   margin: auto;
-  padding: 0 20px;
-  max-width: 500px;
+  padding: 20px 0;
+  width: 70%;
+  min-width: 240px;
+  max-width: 570px;
 }
-.titleApp {
-  font-family: 'Montserrat', sans-serif;
+.appWrapper > .titleToDos {
   text-align: center;
-  font-weight: 500;
-  margin: 20px 0;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.5rem;
 }
-.appContainer > .addTaskBtn {
+.appWrapper > .registerNewTaskBtn {
   outline: none;
-  background-color: rgb(53, 208, 156);
-  color: #444;
+  background-color: #00b4d8;
+  color: #fff;
   border: none;
-  border-radius: 4px;
-  font-size: 1.1rem;
-  margin-bottom: 20px;
+  border-radius: 25px;
+  margin: 20px 0;
   height: 50px;
   width: 100%;
 }
 
-.appContainer > .taskListContainer { padding-bottom: 10px; }
-.taskListContainer > .noTask {
+.appWrapper > .taskList { list-style: none; }
+.taskList .noTask {
   text-align: center;
-  font-size: 1.4rem;
   font-weight: 400;
 }
