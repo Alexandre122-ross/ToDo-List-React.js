@@ -1,11 +1,18 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 // components
 import TaskItem from './components/taskCardItem';
 import ModalTask from './components/modal';
 
 export default function App() {
   const [modalShow, setModalShow] = useState(false);
-  const [taskList, setTaskList] = useState([])
+  const [taskList, setTaskList] = useState(() => {
+    const taskListLocal = localStorage.getItem('@task-list');
+    if(taskListLocal) {
+      return JSON.parse(taskListLocal);
+    };
+
+    return [];
+  });
 
   // Modal Action
   const handlerModalShow = () => setModalShow(true);
@@ -36,6 +43,12 @@ export default function App() {
 
     setTaskList(removeById);
   }
+
+  useEffect(() => {
+    taskList.length > 0
+      ? localStorage.setItem('@task-list', JSON.stringify(taskList))
+      : localStorage.removeItem('');
+  }, [taskList]);
 
   return (
     <div className='appWrapper'>
